@@ -1,6 +1,6 @@
 package ma.sqli.vehicles.model.abstractmodel;
 
-import ma.sqli.vehicles.Fuel;
+import ma.sqli.vehicles.fuel.Fuel;
 
 public class Motorcycle extends Vehicle{
 
@@ -35,5 +35,11 @@ public class Motorcycle extends Vehicle{
 	protected double getConsumption(int parcours) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public String draw(String status) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

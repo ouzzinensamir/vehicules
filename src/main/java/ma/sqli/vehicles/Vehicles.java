@@ -2,7 +2,7 @@ package ma.sqli.vehicles;
 
 import java.util.Map;
 
-import ma.sqli.vehicles.inputparser.DoorsStateUpdater;
+import ma.sqli.vehicles.inputparser.DoorsStateController;
 import ma.sqli.vehicles.inputparser.InputVehiclesBuilder;
 import ma.sqli.vehicles.inputparser.LengthParser;
 import ma.sqli.vehicles.model.abstractmodel.Vehicle;
@@ -42,9 +42,9 @@ public class Vehicles {
 		return allVehiclesFromInput.get(vehicleId);
 	}
 	
-	private void closeTheDoorsSpecified(String string2, Vehicle vehicle) {
+	private void closeTheDoorsSpecified(String numbersOfClosedDoors, Vehicle vehicle) {
 		if(vehicle != null) {
-			DoorsStateUpdater.closeTheDoorsSpecifiedByUser(string2, vehicle);
+			DoorsStateController.closeTheDoorsSpecifiedByUser(numbersOfClosedDoors, vehicle);
 		}
 	}
 	

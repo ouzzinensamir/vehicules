@@ -1,4 +1,4 @@
-package ma.sqli.vehicles;
+package ma.sqli.vehicles.fuel;
 
 public enum Fuel {
 

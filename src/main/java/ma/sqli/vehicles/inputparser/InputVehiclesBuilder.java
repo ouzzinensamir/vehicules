@@ -3,8 +3,8 @@ package ma.sqli.vehicles.inputparser;
 import java.util.HashMap;
 import java.util.Map;
 
-import ma.sqli.vehicles.Fuel;
 import ma.sqli.vehicles.factory.VehicleFactory;
+import ma.sqli.vehicles.fuel.Fuel;
 import ma.sqli.vehicles.model.abstractmodel.Vehicle;
 
 public class InputVehiclesBuilder {

@@ -2,7 +2,7 @@ package ma.sqli.vehicles.inputparser;
 
 import ma.sqli.vehicles.model.abstractmodel.Vehicle;
 
-public class DoorsStateUpdater {
+public class DoorsStateController {
 	
 	public static void closeTheDoorsSpecifiedByUser(String numbersOfClosedDoors, Vehicle vehicle) {
 		String[] numbers = numbersOfClosedDoors.split(" ");

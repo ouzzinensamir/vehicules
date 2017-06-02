@@ -3,7 +3,7 @@ package ma.sqli.vehicles.model.abstractmodel;
 import java.util.ArrayList;
 import java.util.List;
 
-import ma.sqli.vehicles.Fuel;
+import ma.sqli.vehicles.fuel.Fuel;
 
 public abstract class Vehicle {
 	
@@ -62,6 +62,7 @@ public abstract class Vehicle {
 	
 	protected abstract boolean isDoorsNumberValid();
 	public abstract String displayStatus(int length);
+	public abstract String draw(String status);
 	protected abstract double getConsumption(int length);
 	
 	/**

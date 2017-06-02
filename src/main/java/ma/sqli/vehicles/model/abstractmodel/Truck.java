@@ -2,8 +2,8 @@ package ma.sqli.vehicles.model.abstractmodel;
 
 import java.text.DecimalFormat;
 
-import ma.sqli.vehicles.Fuel;
 import ma.sqli.vehicles.VehicleType;
+import ma.sqli.vehicles.fuel.Fuel;
 
 public class Truck extends Vehicle{
 
@@ -50,5 +50,11 @@ public class Truck extends Vehicle{
 	protected double getConsumption(int length) {
 		int consumption = length/16;
 		return Double.parseDouble(new DecimalFormat("##.####").format(consumption));
+	}
+
+	@Override
+	public String draw(String status) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

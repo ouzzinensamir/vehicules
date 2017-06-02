@@ -1,7 +1,7 @@
 package ma.sqli.vehicles.factory;
 
-import ma.sqli.vehicles.Fuel;
 import ma.sqli.vehicles.VehicleType;
+import ma.sqli.vehicles.fuel.Fuel;
 import ma.sqli.vehicles.model.abstractmodel.Car;
 import ma.sqli.vehicles.model.abstractmodel.Motorcycle;
 import ma.sqli.vehicles.model.abstractmodel.Truck;
