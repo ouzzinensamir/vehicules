@@ -1,4 +1,4 @@
-package ma.sqli.vehicles.model.abstractmodel;
+package ma.sqli.vehicles.model;
 
 public class Door {
 

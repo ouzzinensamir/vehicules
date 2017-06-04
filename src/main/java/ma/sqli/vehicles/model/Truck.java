@@ -1,15 +1,14 @@
-package ma.sqli.vehicles.model.abstractmodel;
+package ma.sqli.vehicles.model;
 
-import java.text.DecimalFormat;
-
-import ma.sqli.vehicles.VehicleType;
 import ma.sqli.vehicles.fuel.Fuel;
+import ma.sqli.vehicles.model.abstractmodel.Vehicle;
 
 public class Truck extends Vehicle{
 
 	
 	public Truck(String vehicleType, Fuel fuel, String doorsNumber) {
 		super(vehicleType, fuel, doorsNumber);
+		initializeDoors();
 	}
 
 	protected void initializeDoors() {
@@ -38,23 +37,8 @@ public class Truck extends Vehicle{
 	}
 
 	@Override
-	public String displayStatus(int length) {
-		String status = "";
-		if(!hasDoorOpened()) {
-			status = status + " DOORS OK, MOVING. The "+VehicleType.TRUCK.toString() +" will consume "+ getConsumption(length)+" L";
-		}
-		return status;
+	public double getConsumption(double length) {
+		return length/20;
 	}
 
-	@Override
-	protected double getConsumption(int length) {
-		int consumption = length/16;
-		return Double.parseDouble(new DecimalFormat("##.####").format(consumption));
-	}
-
-	@Override
-	public String draw(String status) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

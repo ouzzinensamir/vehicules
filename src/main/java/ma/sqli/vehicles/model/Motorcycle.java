@@ -1,6 +1,7 @@
-package ma.sqli.vehicles.model.abstractmodel;
+package ma.sqli.vehicles.model;
 
 import ma.sqli.vehicles.fuel.Fuel;
+import ma.sqli.vehicles.model.abstractmodel.Vehicle;
 
 public class Motorcycle extends Vehicle{
 
@@ -26,20 +27,7 @@ public class Motorcycle extends Vehicle{
 	}
 
 	@Override
-	public String displayStatus(int parcours) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected double getConsumption(int parcours) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public String draw(String status) {
-		// TODO Auto-generated method stub
-		return null;
+	public double getConsumption(double length) {
+		return length/16;
 	}
 }

@@ -1,7 +1,8 @@
-package ma.sqli.vehicles.model.abstractmodel;
+package ma.sqli.vehicles.model;
 
-import ma.sqli.vehicles.VehicleType;
+import ma.sqli.vehicles.exceptions.IllegalNumberOfDoorsException;
 import ma.sqli.vehicles.fuel.Fuel;
+import ma.sqli.vehicles.model.abstractmodel.Vehicle;
 
 public class Car extends Vehicle{
 
@@ -16,7 +17,7 @@ public class Car extends Vehicle{
 				for(int i = 1; i<=getDoorsNumber() ;i++) {
 					doors.add(new Door(i, true));
 				}
-			} catch (Exception e) {
+			} catch (IllegalNumberOfDoorsException e) {
 				e.printStackTrace();
 			}
 		}
@@ -36,23 +37,9 @@ public class Car extends Vehicle{
 	}
 
 	@Override
-	public String displayStatus(int length) {
-		String status = "";
-		if(!hasDoorOpened()) {
-			status = status + " DOORS OK, MOVING. The "+VehicleType.CAR.toString() +" will consume "+ getConsumption(length)+" L";
-		}
-		return status;
+	public double getConsumption(double length) {
+		int consumption = (int) length/33;
+		return consumption;
 	}
 
-	@Override
-	protected double getConsumption(int length) {
-		int consumption = length/33;
-		return round(consumption, 2);
-	}
-
-	@Override
-	public String draw(String status) {
-		return null;
-	}
-	
 }

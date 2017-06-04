@@ -2,10 +2,11 @@ package ma.sqli.vehicles;
 
 import java.util.Map;
 
-import ma.sqli.vehicles.inputparser.DoorsStateController;
-import ma.sqli.vehicles.inputparser.InputVehiclesBuilder;
-import ma.sqli.vehicles.inputparser.LengthParser;
+import ma.sqli.vehicles.display.DisplayService;
 import ma.sqli.vehicles.model.abstractmodel.Vehicle;
+import ma.sqli.vehicles.service.doorservice.DoorService;
+import ma.sqli.vehicles.service.inputparser.InputVehiclesBuilder;
+import ma.sqli.vehicles.service.inputparser.LengthParser;
 
 /************
 The aim of the exercise is to pass all the test cases bellow.
@@ -23,28 +24,33 @@ door 3 |_| door 4
 
 public class Vehicles {
 	
-	private String vehicles;
+	private String vehiclesInput;
 	
 	public Vehicles(String vehicles) {
-		this.vehicles = vehicles;
+		this.vehiclesInput = vehicles;
 	}
 	
 	public String move(String string, String string2, String string3) {
 		Vehicle vehicle = getVehicleFromVehicleId(string);
-		closeTheDoorsSpecified(string2, vehicle);
-		int length = LengthParser.getLength(string3);
-		return vehicle.displayStatus(length);
+		closeTheDoorsSpecifiedByUser(string2, vehicle);
+		double length = LengthParser.getLength(string3);
+		return DisplayService.getStatus(vehicle, length);
 	}
 
 	private Vehicle getVehicleFromVehicleId(String vehicleId) {
-		InputVehiclesBuilder inputVehiclesParser = new InputVehiclesBuilder(vehicles);
+		InputVehiclesBuilder inputVehiclesParser = new InputVehiclesBuilder(vehiclesInput);
 		Map<String, Vehicle> allVehiclesFromInput = inputVehiclesParser.getAllVehiclesFromInput();
-		return allVehiclesFromInput.get(vehicleId);
+		if(allVehiclesFromInput != null) {
+			return allVehiclesFromInput.get(vehicleId);
+		}else {
+			return null;
+		}
 	}
 	
-	private void closeTheDoorsSpecified(String numbersOfClosedDoors, Vehicle vehicle) {
-		if(vehicle != null) {
-			DoorsStateController.closeTheDoorsSpecifiedByUser(numbersOfClosedDoors, vehicle);
+	private void closeTheDoorsSpecifiedByUser(String numbersOfClosedDoors, Vehicle vehicle) {
+		if(vehicle != null && numbersOfClosedDoors != null && !numbersOfClosedDoors.isEmpty()) {
+			DoorService doorsStateController = new DoorService();
+			doorsStateController.closeTheDoorsSpecifiedByUser(numbersOfClosedDoors, vehicle);
 		}
 	}
 	

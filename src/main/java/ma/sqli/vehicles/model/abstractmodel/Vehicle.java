@@ -3,7 +3,9 @@ package ma.sqli.vehicles.model.abstractmodel;
 import java.util.ArrayList;
 import java.util.List;
 
+import ma.sqli.vehicles.exceptions.IllegalNumberOfDoorsException;
 import ma.sqli.vehicles.fuel.Fuel;
+import ma.sqli.vehicles.model.Door;
 
 public abstract class Vehicle {
 	
@@ -23,15 +25,15 @@ public abstract class Vehicle {
 		this.vehicleId = vehicleType;
 	}
 
-	protected int getDoorsNumber() throws Exception{
+	protected int getDoorsNumber() throws IllegalNumberOfDoorsException{
 		if(isDoorsNumberValid()) {
 			return Integer.valueOf(sDoorsNumber);
 		}else {
-			throw new Exception("PApapapapa");
+			throw new IllegalNumberOfDoorsException("The number of doors is not valid for this vehicle");
 		}
 	}
 	
-	protected boolean hasDoorOpened() {
+	public boolean hasDoorOpened() {
 		for(Door door : doors) {
 			if(door.isOpened()) {
 				return true;
@@ -40,31 +42,6 @@ public abstract class Vehicle {
 		return false;
 	}
 	
-	public void closeDoorWithId(String id) {
-		int idOfDoor = Integer.parseInt(id);
-		for(Door door : doors) {
-			if(door.getId() == idOfDoor) {
-				door.close();
-				break;
-			}
-		}
-	}
-	
-	public void openDoorWithId(String id) {
-		int idOfDoor = Integer.parseInt(id);
-		for(Door door : doors) {
-			if(door.getId() == idOfDoor) {
-				door.open();
-				break;
-			}
-		}
-	}
-	
-	protected abstract boolean isDoorsNumberValid();
-	public abstract String displayStatus(int length);
-	public abstract String draw(String status);
-	protected abstract double getConsumption(int length);
-	
 	/**
 	 * @return the vehicleId
 	 */
@@ -72,14 +49,34 @@ public abstract class Vehicle {
 		return vehicleId;
 	}
 	
-	public static double round(double value, int places) {
-	    if (places < 0) {
-	    	throw new IllegalArgumentException();
-	    }
-
-	    long factor = (long) Math.pow(10, places);
-	    value = value * factor;
-	    long tmp = Math.round(value);
-	    return (double) tmp / factor;
+	/**
+	 * @return the doors
+	 */
+	public List<Door> getDoors() {
+		return doors;
 	}
+
+	/**
+	 * @param doors the doors to set
+	 */
+	public void setDoors(List<Door> doors) {
+		this.doors = doors;
+	}
+
+	/**
+	 * @return the fuel
+	 */
+	public Fuel getFuel() {
+		return fuel;
+	}
+
+	/**
+	 * @param fuel the fuel to set
+	 */
+	public void setFuel(Fuel fuel) {
+		this.fuel = fuel;
+	}
+	
+	protected abstract boolean isDoorsNumberValid() throws IllegalNumberOfDoorsException;
+	public abstract double getConsumption(double length);
 }
