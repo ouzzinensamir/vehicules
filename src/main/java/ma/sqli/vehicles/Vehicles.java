@@ -2,8 +2,8 @@ package ma.sqli.vehicles;
 
 import java.util.Map;
 
-import ma.sqli.vehicles.display.DisplayService;
 import ma.sqli.vehicles.model.abstractmodel.Vehicle;
+import ma.sqli.vehicles.service.display.DisplayService;
 import ma.sqli.vehicles.service.doorservice.DoorService;
 import ma.sqli.vehicles.service.inputparser.InputVehiclesBuilder;
 import ma.sqli.vehicles.service.inputparser.LengthParser;

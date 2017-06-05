@@ -1,4 +1,4 @@
-package ma.sqli.vehicles.display;
+package ma.sqli.vehicles.service.display;
 
 import ma.sqli.vehicles.model.Door;
 import ma.sqli.vehicles.model.abstractmodel.Vehicle;
