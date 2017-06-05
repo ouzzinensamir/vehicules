@@ -7,32 +7,8 @@ public class DisplayService {
 
 	private static StringBuilder display(Vehicle vehicle) {
 		StringBuilder vehicleDisplay = new StringBuilder();
-		int numberOfDoors = vehicle.getDoors().size();
 		vehicleDisplay.append(displayFront());
-		for(Door door : vehicle.getDoors()) {
-			if(door.getId() %2 != 0) {
-				if(!door.isOpened()) {
-					vehicleDisplay.append(" |");
-				}else {
-					vehicleDisplay.append(" /");
-				}
-				if(numberOfDoors == door.getId() + 1) {
-					vehicleDisplay.append("_");
-				}
-			}else {
-				if(door.getId() < numberOfDoors) {
-					vehicleDisplay.append(" ");
-				}
-				if(!door.isOpened()) {
-					vehicleDisplay.append("|");
-				}else {
-					vehicleDisplay.append("\\");
-				}
-				if(door.getId() != numberOfDoors) {
-					vehicleDisplay.append("\n");
-				}
-			}
-		}
+		displayDoorsAndBackOfTheVehicle(vehicle, vehicleDisplay);
 		return vehicleDisplay;
 	}
 	
@@ -52,5 +28,45 @@ public class DisplayService {
 	
 	private static String adjustConsumptionByAddingTwoZerosAfterDot(double consumption) {
 		return  String.valueOf((int) consumption).concat(".00");
+	}
+	
+	private static void displayDoorsAndBackOfTheVehicle(Vehicle vehicle, StringBuilder vehicleDisplay) {
+		int numberOfDoors = vehicle.getDoors().size();
+		for(Door door : vehicle.getDoors()) {
+			if(door.getId() %2 != 0) {
+				displayLeftDoors(door, vehicleDisplay);
+				displayBack(door, vehicleDisplay, numberOfDoors);
+			}else {
+				displayRightDoors(door, vehicleDisplay, numberOfDoors);
+			}
+		}
+	}
+	
+	private static void displayLeftDoors(Door door, StringBuilder vehicleDisplay) {
+		if(!door.isOpened()) {
+			vehicleDisplay.append(" |");
+		}else {
+			vehicleDisplay.append(" /");
+		}
+	}
+	
+	private static void displayBack(Door door, StringBuilder vehicleDisplay, int numberOfDoors) {
+		if(numberOfDoors == door.getId() + 1) {
+			vehicleDisplay.append("_");
+		}
+	}
+	
+	private static void displayRightDoors(Door door, StringBuilder vehicleDisplay, int numberOfDoors) {
+		if(door.getId() < numberOfDoors) {
+			vehicleDisplay.append(" ");
+		}
+		if(!door.isOpened()) {
+			vehicleDisplay.append("|");
+		}else {
+			vehicleDisplay.append("\\");
+		}
+		if(door.getId() != numberOfDoors) {
+			vehicleDisplay.append("\n");
+		}
 	}
 }
